@@ -39,3 +39,6 @@ Configuration of `~/.tmux.conf`
 source /usr.share/powerline/bindings/tmux/powerline.conf
 set-option -g default-terminal "screen-256color"
 ```
+
+
+source: https://ubuntu-mate.community/t/installing-powerline-as-quickly-as-possible/5381
