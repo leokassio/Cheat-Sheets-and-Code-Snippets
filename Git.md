@@ -5,6 +5,12 @@ Configure the username, but it still require the password.
 ```shell
 ~: git config credential.username leokassio
 ```
+or
+```shell
+~: git config user.email kassio.comp@gmail.com
+~: git config user.name "Kassio Machado" 
+```
+
 
 ## Git workflow
 ```shell
