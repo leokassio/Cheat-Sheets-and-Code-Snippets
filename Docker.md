@@ -1,35 +1,74 @@
 # Docker
 
-### Building
+## Basic Theory
+- What is the difference of build, create and run.
+- Images
+- Containers (inclding the difference of a VM)
 
-```shell
-docker build [options] .
--t "app/container_name"    	# name
+Elements
+- Base Image
+- Docker File
+- Docker Composer
+
+
+## Dockerfile Example
+
+Basic configuration of a docker image.
+
+```dockerfile
+# redis from package manager
+FROM alpine # alpine is a lightweight dist
+RUN apk add --update redis # apk is a package manager
+CMD [ "redis-server" ]
 ```
 
-### Running
+This 2nd example shows a trick to avoid the rebuild. Until the npm install there is less chance of changes, it means that we can skip several steps of the "mathroska" building process using the cache.
 
-```shell
-docker run [options] IMAGE
-# docker run = docker create + docker start
+```dockerfile
+# nodejs 
+FROM nodejs:alpine # alpine is a lightweight version
+WORKDIR /usr/app
+COPY ./package.json ./ # package contains the list of dependencies
+RUN npm install # install the dependencies
+COPY ./ ./ # copy all the files
+CMD [ "npm", "start" ] # executes the app
 ```
 
-### Creation
+## Building
 
 ```shell
-docker create [options] IMAGE
--a, --attach               	# attach stdout/err
--i, --interactive          	# attach stdin (interactive)
--t, --tty                  	# pseudo-tty
---name NAME            		# name your image
--p, --publish 5000:5000    	# port map
---expose 5432          		# expose a port to linked containers
--P, --publish-all          	# publish all ports
---link container:alias 		# linking
--v, --volume `pwd`:/app    	# mount (absolute paths needed)
--e, --env NAME=hello       	# env vars
+~: docker build [options] .
+# Options:
+# -t "app/container_name"
+```
+
+## Running
+Running is quivalent to build and create an image and then start the container
+```shell
+~: docker run [options] IMAGE
+~: docker run image-name # creates a docker container from a image
+~: docker run -it image-name sh # executes the command sh inside the container
+~: docker run -p 8080:8080 image-name # port forwarding host:container
+```
+
+## Creation
+
+```shell
+~: docker create [options] IMAGE
+# Options:
+# -a, --attach               	# attach stdout/err
+# -i, --interactive          	# attach stdin (interactive)
+# -t, --tty                  	# pseudo-tty
+# --name NAME            		# name your image
+# -p, --publish 5000:5000    	# port map
+# --expose 5432          		# expose a port to linked containers
+# -P, --publish-all          	# publish all ports
+# --link container:alias 		# linking
+# -v, --volume `pwd`:/app    	# mount (absolute paths needed)
+# -e, --env NAME=hello       	# env vars
+
 # Example
-docker create --name app_redis_1 --expose 6379 redis:3.0.2
+~: docker create --name app_redis_1 --expose 6379 redis:3.0.2
 ```
 
 ### PS
