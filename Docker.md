@@ -71,7 +71,7 @@ Running is quivalent to build and create an image and then start the container
 ~: docker create --name app_redis_1 --expose 6379 redis:3.0.2
 ```
 
-### PS
+### Listing Containers
 
 ```shell
 docker ps 
