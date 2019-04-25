@@ -1,8 +1,8 @@
 # Docker
 
 Important References:
-- Instalation on Linux: https://medium.com/@Grigorkh/how-to-install-docker-on-ubuntu-19-04-7ccfeda5935
-- Post-installation steps for Linux: https://docs.docker.com/install/linux/linux-postinstall/
+- [Instalation on Linux](https://medium.com/@Grigorkh/how-to-install-docker-on-ubuntu-19-04-7ccfeda5935)
+- [Post-installation steps for Linux](https://docs.docker.com/install/linux/linux-postinstall/)
 
 ## Basic Theory
 - What is the difference of build, create and run.
